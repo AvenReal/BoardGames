@@ -180,9 +180,10 @@ GameObject:
   - component: {fileID: 7962762462241987025}
   - component: {fileID: 2660989140192337889}
   - component: {fileID: 2441098798684299920}
+  - component: {fileID: 8949601333314675393}
   m_Layer: 0
   m_Name: Card
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,6 +240,28 @@ MonoBehaviour:
   DisplayText: {fileID: 7503171075818677352}
   value: 0
   type: 0
+  pickable: 0
+--- !u!65 &8949601333314675393
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6761098516296594305}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.395744, y: 18.873693, z: 1}
+  m_Center: {x: -0.004377365, y: 0.039803505, z: 0}
 --- !u!1 &7996590731955036389
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,8 +395,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
