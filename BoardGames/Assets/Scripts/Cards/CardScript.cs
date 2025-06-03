@@ -7,10 +7,7 @@ using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public enum CardType
-{
-    Number
-}
+
 
 
 public class CardScript : MonoBehaviour
@@ -26,12 +23,11 @@ public class CardScript : MonoBehaviour
     [SerializeField] SpriteRenderer FrontSprite;
     [SerializeField] TMP_Text DisplayText;
     
-    [HideInInspector] public int value;
-    [HideInInspector] public CardType type = CardType.Number;
-    [HideInInspector] public bool pickable = false;
+    [HideInInspector] public Card Card;
+    
     void Start()
     {
-        DisplayText.text = type == CardType.Number ? value.ToString() : type.ToString();
+        
     }
 
     // Update is called once per frame
@@ -46,7 +42,8 @@ public class CardScript : MonoBehaviour
         if(Input.GetMouseButtonDown(1))
             FrontSprite.color = new Color(1f, 0f, 0f, 1f);
     }
-
+    
+    # region Flips
     public void Flip()
     {
         if(Mathf.Approximately(gameObject.transform.rotation.y, -1))
@@ -55,11 +52,11 @@ public class CardScript : MonoBehaviour
             BackToFrontFlip();
     }
     
-    
     public void FrontToBackFlip()
     {
         if(Mathf.Approximately(gameObject.transform.rotation.y, 0))
             return;
+        
         Animation.Play("CardFrontToBackFlip");
         gameObject.transform.rotation = new Quaternion(0, 180, 0, 0);
     }
@@ -72,7 +69,8 @@ public class CardScript : MonoBehaviour
         Animation.Play("CardBackToFrontFlip");
         gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
     }
-
+    
+    #endregion
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log(other.gameObject.name);
@@ -80,5 +78,12 @@ public class CardScript : MonoBehaviour
             return;
         
         Animation.Play("MouseHover");
+    }
+
+    public void SetCard(Card card)
+    {
+        Card = card;
+        DisplayText.text = card.DisplayValue;
+        FrontSprite.color = card.Color;
     }
 }
