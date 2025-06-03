@@ -214,10 +214,11 @@ Animation:
   m_GameObject: {fileID: 6761098516296594305}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 8e299e354c484fd479a8463bb67ffe92, type: 2}
+  m_Animation: {fileID: 7400000, guid: 4937e67999bfc7e419d04433e582e053, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 8e299e354c484fd479a8463bb67ffe92, type: 2}
   - {fileID: 7400000, guid: 3988687592710124290a73027bb742ad, type: 2}
+  - {fileID: 7400000, guid: 4937e67999bfc7e419d04433e582e053, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -257,7 +258,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 10.395744, y: 18.873693, z: 1}

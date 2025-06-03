@@ -14,14 +14,14 @@ public class MouseSphereScript : MonoBehaviour
     void Update()
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        float z = 20;
-        float x = (Input.mousePosition.x - Screen.width / 2);
-        float y = (Input.mousePosition.y - Screen.height / 2);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        float z = -10;
+        float x = 0;
+        float y = 0;
+        if (Physics.Raycast(ray, out RaycastHit hit) && !hit.collider.gameObject.CompareTag("MouseSphere"))
         {
-            x = hit.transform.position.x;
-            y = hit.transform.position.y;
-            z = hit.transform.position.z;
+            x = hit.point.x;
+            y = hit.point.y-1;
+            z = hit.point.z;
         }
         
         transform.position = new Vector3(x, y, z);

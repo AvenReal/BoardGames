@@ -73,8 +73,12 @@ public class CardScript : MonoBehaviour
         gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
-    public void OnMouseOver()
+    private void OnCollisionEnter(Collision other)
     {
+        Debug.Log(other.gameObject.name);
+        if(!other.gameObject.CompareTag("MouseSphere"))
+            return;
         
+        Animation.Play("MouseHover");
     }
 }

@@ -13,13 +13,6 @@ public class GlobalScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            if (hit.collider.gameObject.CompareTag("Card"))
-            {
-                hit.collider.gameObject.GetComponent<CardScript>().OnMouseOver();
-            }
-        }
+       
     }
 }
