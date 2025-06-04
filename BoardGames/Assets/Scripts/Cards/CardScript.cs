@@ -10,9 +10,8 @@ using UnityEngine.Serialization;
 
 
 
-public class CardScript : MonoBehaviour
+public class CardScript : InteractibleScript
 {
-    // Start is called before the first frame update
     [Header("Animation")]
     [SerializeField] Animation Animation;
     
@@ -24,29 +23,20 @@ public class CardScript : MonoBehaviour
     [SerializeField] TMP_Text DisplayText;
     
     [HideInInspector] public Card Card;
+    private bool _faceUp = false;
     
-    void Start()
+    
+    public void SetCard(Card card)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            Flip();
-        }
-        
-        if(Input.GetMouseButtonDown(1))
-            FrontSprite.color = new Color(1f, 0f, 0f, 1f);
+        Card = card;
+        DisplayText.text = card.DisplayValue;
+        FrontSprite.color = card.Color;
     }
     
     # region Flips
     public void Flip()
     {
-        if(Mathf.Approximately(gameObject.transform.rotation.y, -1))
+        if(_faceUp)
             FrontToBackFlip();
         else
             BackToFrontFlip();
@@ -54,36 +44,39 @@ public class CardScript : MonoBehaviour
     
     public void FrontToBackFlip()
     {
-        if(Mathf.Approximately(gameObject.transform.rotation.y, 0))
+        if(!_faceUp)
             return;
-        
+        _faceUp = !_faceUp;
         Animation.Play("CardFrontToBackFlip");
-        gameObject.transform.rotation = new Quaternion(0, 180, 0, 0);
+        //gameObject.transform.rotation = new Quaternion(0, 180, 0, 0);
     }
 
     public void BackToFrontFlip()
     {
-        if(Mathf.Approximately(gameObject.transform.rotation.y, -1))
+        if(_faceUp)
             return;
-        
+        _faceUp = !_faceUp;
         Animation.Play("CardBackToFrontFlip");
-        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        //gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
     }
     
     #endregion
-    private void OnCollisionEnter(Collision other)
+
+    public override void OnClick()
     {
-        Debug.Log(other.gameObject.name);
-        if(!other.gameObject.CompareTag("MouseSphere"))
+        if(!Interactible)
             return;
-        
-        Animation.Play("MouseHover");
+        Animation.Stop();
+        Flip();
     }
 
-    public void SetCard(Card card)
+    public override void OnHover()
     {
-        Card = card;
-        DisplayText.text = card.DisplayValue;
-        FrontSprite.color = card.Color;
+        if(!Interactible)
+            return;
+
+        Animation.Play("CardHover");
     }
+
+    
 }
