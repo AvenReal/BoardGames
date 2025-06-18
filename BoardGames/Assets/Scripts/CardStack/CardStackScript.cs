@@ -6,7 +6,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardStack : MonoBehaviour
+
+
+public class CardStack : InteractibleScript
 {
     private Stack<Card> _cards = new Stack<Card>();
 
@@ -32,5 +34,24 @@ public class CardStack : MonoBehaviour
         {
             _debugDisplay.text += $"{card.DisplayValue}\n";
         }
+    }
+
+
+    public override void OnClick()
+    {
+        if(_cards.Count == 0)
+            return;
+        var newCard = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/Card"), transform);
+        newCard.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z  + transform.localScale.z/2);
+        var newCardScript = newCard.GetComponent<CardScript>();
+        
+        newCardScript.OnClick();
+
+
+    }
+
+    public override void OnHover()
+    {
+        
     }
 }

@@ -66,8 +66,12 @@ public class CardScript : InteractibleScript
     {
         if(!Interactible)
             return;
-        Animation.Stop();
-        Flip();
+        
+        if(GlobalScript.Instance.SelectedCard != null)
+            GlobalScript.Instance.SelectedCard = gameObject;
+        
+        if(GlobalScript.Instance.SelectedCard == gameObject)
+            GlobalScript.Instance.SelectedCard = null;
     }
 
     public override void OnHover()
