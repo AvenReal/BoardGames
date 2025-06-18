@@ -64,6 +64,8 @@ public class CardScript : InteractibleScript
 
     public override void OnClick()
     {
+        base.OnClick();
+        
         if(!Interactible)
             return;
         
