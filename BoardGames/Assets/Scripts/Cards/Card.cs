@@ -19,7 +19,9 @@ public class Card
     public CardScript Instantiate(Transform parent)
     {
         var card = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/Card"), parent);
-        card.GetComponent<CardScript>().SetCard( this);
+        
+        card.GetComponent<CardScript>().SetCard(this);
+        
         return card.GetComponent<CardScript>();
     }
 }

@@ -8,9 +8,12 @@ using UnityEngine.UI;
 
 
 
-public class CardStack : InteractibleScript
+public class CardStackScript : InteractibleScript
 {
-    [SerializeField] public Stack<Card> Cards = new Stack<Card>();
+    [SerializeField] public SpriteRenderer SpriteRenderer;
+    
+    public Stack<Card> Cards = new Stack<Card>();
+    
     public bool FacingUp = false;
     public void Push(Card card)
     {
@@ -19,7 +22,7 @@ public class CardStack : InteractibleScript
 
     private void Update()
     {
-            
+        SpriteRenderer.color = new Color(1f, 1f, 1f, Cards.Count == 0 ? 0f : 1f);
     }
 
 
@@ -27,8 +30,7 @@ public class CardStack : InteractibleScript
     {
         if(Cards.Count == 0)
             return;
-        var newCard = Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/Card"), transform);
-        newCard.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z  + transform.localScale.z/2);
+        var newCard = Cards.Peek().Instantiate(parent: transform);
         var newCardScript = newCard.GetComponent<CardScript>();
         
         newCardScript.OnClick();
