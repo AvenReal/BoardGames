@@ -32,7 +32,12 @@ public class CardScript : InteractibleScript
         DisplayText.text = card.DisplayValue;
         FrontSprite.color = card.Color;
     }
-    
+
+    public void Update()
+    {
+        BackSprite.color = Interactible ?  Color.white : Color.gray;
+    }
+
     # region Flips
     public void Flip()
     {
